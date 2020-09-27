@@ -18,8 +18,9 @@ var commentRoutes 		= require("./routes/comments"),
 	indexRoutes 		= require("./routes/index");
 
 
-
-mongoose.connect(process.env.DATABASEURL, {
+console.log(process.env.DATABASEURL);
+// mongoose.connect(process.env.DATABASEURL);
+mongoose.connect("mongodb+srv://Devin:1234Abcd@cluster0.4yso0.mongodb.net/<dbname>?retryWrites=true&w=majority", {
 	useNewUrlParser: true,
 	useCreateIndex: true
 }).then(function(){
@@ -27,7 +28,6 @@ mongoose.connect(process.env.DATABASEURL, {
 }).catch(function(err){
 	console.log("ERROR:", err.message);
 });
-
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
