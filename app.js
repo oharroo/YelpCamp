@@ -19,8 +19,8 @@ var commentRoutes 		= require("./routes/comments"),
 
 
 console.log(process.env.DATABASEURL);
-// mongoose.connect(process.env.DATABASEURL); to use environment variable, put "
-mongoose.connect(DATABASEURL, {
+// mongoose.connect(process.env.DATABASEURL);
+mongoose.connect("mongodb+srv://Devin:1234Abcd@cluster0.4yso0.mongodb.net/<dbname>?retryWrites=true&w=majority", {
 	useNewUrlParser: true,
 	useCreateIndex: true
 }).then(function(){
