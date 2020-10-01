@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express 		= require("express"),
 	  app 			= express(),
 	  bodyParser 	= require("body-parser"),
@@ -18,22 +20,24 @@ var commentRoutes 		= require("./routes/comments"),
 	indexRoutes 		= require("./routes/index");
 
 
+console.log(process.env.GEOCODER_API_KEY);
 console.log(process.env.DATABASEURL);
-// mongoose.connect("mongodb://localhost/yelp_camp_v14");
-mongoose.connect("mongodb+srv://Devin:1234Abcd@cluster0.4yso0.mongodb.net/<dbname>?retryWrites=true&w=majority", {
-	useNewUrlParser: true,
-	useCreateIndex: true
-}).then(function(){
-	console.log("Connected to DB");
-}).catch(function(err){
-	console.log("ERROR:", err.message);
-});
+mongoose.connect("mongodb://localhost/yelp_camp_v14");
+// mongoose.connect("mongodb+srv://Devin:1234Abcd@cluster0.4yso0.mongodb.net/<dbname>?retryWrites=true&w=majority", {
+// 	useNewUrlParser: true,
+// 	useCreateIndex: true
+// }).then(function(){
+// 	console.log("Connected to DB");
+// }).catch(function(err){
+// 	console.log("ERROR:", err.message);
+// });
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
+app.locals.moment = require("moment");
 //seedDB();		//seed the database with data
 
 
